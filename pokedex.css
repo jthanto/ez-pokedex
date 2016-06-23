@@ -35,3 +35,7 @@ textarea#exportarea{
 tr.got-it{
     background-color: #dff0d8;
 }
+
+#options_container{
+    display: none;
+}
