@@ -81,7 +81,7 @@ table#dex_table tr.got-it{
 
 header{
     width: 100%;
-    padding: 1em 10% 0 10%;
+    padding: 1em 10% 1em 10%;
     background: #fcfcfc;
     border-bottom: 1px solid rgba(0,0,0,0.25) ;
 }
@@ -93,6 +93,25 @@ header{
 #logo{
     float: left;
     margin-right: 2em;
+}
+
+#option_buttons{
+    width: 19%;
+    display: inline-block;
+}
+#option_buttons button{
+    width: 100%;
+    padding: 0.5em 2px;
+}
+#user_data_container{
+    width: 80%;
+    display: inline-block;
+}
+#user_data_container textarea{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /*table#dex_table thead{*/

@@ -20,14 +20,18 @@
             <h1>The national pokedex</h1>
             <div>
                 <button id="options"><strong>Options</strong></button>
-                <div id="options_container">
-                    <button id="export_json">Export data</button>
-                    <button id="import_json">Import data</button>
-                    <textarea id="user_data" title="json encoded pokedex data belonging to the user"></textarea>
-                </div>
             </div>
         </div>
         <div style="clear: both; display: block;"></div>
+        <div id="options_container">
+            <div id="option_buttons">
+                <button id="import_json">Import data</button>
+                <button id="export_json">Export data</button><br>
+            </div>
+            <div id="user_data_container">
+                <textarea id="user_data" title="json encoded pokedex data belonging to the user"></textarea>
+            </div>
+        </div>
     </header>
     <main id="table_wrapper">
         <div id="status">

@@ -173,7 +173,7 @@ var initialize = function(){
         $('button#export_json').click(exportJSON);
         $('button#import_json').click(importJSON);
         $('select#filter').val('default');
-        $('#options').click(function(){$('#options_container').toggle()});
+        $('#options').click(function(){$('#options_container').slideToggle(200)});
         $('select#filter').change(applyFilter);
 
     });
