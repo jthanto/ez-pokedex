@@ -15,41 +15,51 @@ var rowClick = function(){
 };
 
 var sorterConfig = {
-    widgets: ['stickyHeaders', 'filter' ],
+    widgets: ['filter', 'stickyHeaders'],
     selectorHeaders: 'thead th, thead td',
     widgetOptions: {
-
-        // extra class name added to the sticky header row
         stickyHeaders : 'sticky',
-        // number or jquery selector targeting the position:fixed element
         stickyHeaders_offset : 0,
-        // added to table ID, if it exists
         stickyHeaders_cloneId : '-sticky',
-        // trigger "resize" event on headers
         stickyHeaders_addResizeEvent : true,
-        // if false and a caption exist, it won't be included in the sticky header
         stickyHeaders_includeCaption : true,
-        // The zIndex of the stickyHeaders, allows the user to adjust this to their needs
         stickyHeaders_zIndex : 2,
-        // jQuery selector or object to attach sticky header to
         stickyHeaders_attachTo : null,
-        // jQuery selector or object to monitor horizontal scroll position (defaults: xScroll > attachTo > window)
         stickyHeaders_xScroll : null,
-        // jQuery selector or object to monitor vertical scroll position (defaults: yScroll > attachTo > window)
         stickyHeaders_yScroll : null,
+        stickyHeaders_filteredToTop: true,
 
-        // scroll table top into view after filtering
-        stickyHeaders_filteredToTop: true
-
-
-
-        // *** REMOVED jQuery UI theme due to adding an accordion on this demo page ***
-        // adding zebra striping, using content and default styles - the ui css removes the background from default
-        // even and odd class names included for this demo to allow switching themes
-        // , zebra   : ["ui-widget-content even", "ui-state-default odd"]
-        // use uitheme widget to apply defauly jquery ui (jui) class names
-        // see the uitheme demo for more details on how to change the class names
-        // , uitheme : 'jui'
+        filter_childRows : false,
+        filter_childByColumn : false,
+        filter_childWithSibs : true,
+        filter_columnFilters : true,
+        filter_columnAnyMatch: true,
+        filter_cellFilter : '',
+        filter_cssFilter : '', // or []
+        filter_defaultFilter : {},
+        filter_excludeFilter : {},
+        filter_external : '',
+        filter_filteredRow : 'filtered',
+        filter_formatter : null,
+        filter_functions : null,
+        filter_hideEmpty : true,
+        filter_hideFilters : true,
+        filter_ignoreCase : true,
+        filter_liveSearch : true,
+        filter_matchType : { 'input': 'exact', 'select': 'exact' },
+        filter_onlyAvail : 'filter-onlyAvail',
+        filter_placeholder : { search : '', select : '' },
+        filter_reset : 'button.reset',
+        filter_resetOnEsc : true,
+        filter_saveFilters : true,
+        filter_searchDelay : 300,
+        filter_searchFiltered: true,
+        filter_selectSource  : null,
+        filter_serversideFiltering : false,
+        filter_startsWith : false,
+        filter_useParsedData : false,
+        filter_defaultAttrib : 'data-value',
+        filter_selectSourceSeparator : '|'
     }
 }
 
@@ -162,6 +172,7 @@ var initialize = function(){
         $dexTable.find('tbody tr').click(rowClick);
         $('button#export_json').click(exportJSON);
         $('button#import_json').click(importJSON);
+        $('select#filter').val('default');
         $('#options').click(function(){$('#options_container').toggle()});
         $('select#filter').change(applyFilter);
 

@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width">
 	<link href="pokedex.css" type="text/css" rel="stylesheet" />
 	<link href="lib/bootstrap.min.css" type="text/css" rel="stylesheet" />
-	<script type="text/javascript" src="lib/jquery-3.0.0.js"></script>
+	<script type="text/javascript" src="lib/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="lib/mustache.min.js"></script>
 	<script type="text/javascript" src="lib/jquery.tablesorter.js"></script>
 	<script type="text/javascript" src="lib/jquery.tablesorter.widgets.js"></script>
@@ -15,36 +15,40 @@
 </head>
 <body>
     <header>
-        <h1>The national pokedex</h1>
+        <a id="logo" href="/"><img src="img/pokeball.jpg"></a>
         <div>
-            <button id="options"><strong>Options</strong></button>
-            <div id="options_container">
-                <button id="export_json">Export data</button>
-                <button id="import_json">Import data</button>
-                <textarea id="user_data" title="json encoded pokedex data belonging to the user"></textarea>
+            <h1>The national pokedex</h1>
+            <div>
+                <button id="options"><strong>Options</strong></button>
+                <div id="options_container">
+                    <button id="export_json">Export data</button>
+                    <button id="import_json">Import data</button>
+                    <textarea id="user_data" title="json encoded pokedex data belonging to the user"></textarea>
+                </div>
             </div>
         </div>
+        <div style="clear: both; display: block;"></div>
     </header>
-    <div id="table_wrapper">
+    <main id="table_wrapper">
+        <div id="status">
+        </div>
         <div>
-            <div id="status">
-            </div>
-            <div>
-                <select id="filter" title="Filter">
-                    <option value="default">Show all</option>
-                    <option value="caught">Caught</option>
-                    <option value="un-caught">Un-caucght</option>
-                </select>
-            </div>
+            <select id="filter" title="Filter">
+                <option value="default">Show all</option>
+                <option value="caught">Caught</option>
+                <option value="un-caught">Un-caucght</option>
+            </select>
         </div>
         <table id="dex_table">
             <thead>
-                <tr><th>National Pokédex Number</th><th>Name</th><th class="sorter-false">Location</th></tr>
+                <tr><th data-placeholder="Filter by #">National Pokédex Number</th>
+                    <th data-placeholder="Filter by name">Name</th>
+                    <th data-placeholder="Filter by Location" class="sorter-false">Location</th></tr>
             </thead>
             <tbody>
             </tbody>
         </table>
-    </div>
+    </main>
 
 <script id="pokedex_row_template" type="text/html">
 	{{#pokemon}}

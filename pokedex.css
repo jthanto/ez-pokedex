@@ -1,13 +1,40 @@
-table#dex_table{
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+#table_wrapper:before{
+    content: ' ';
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+    background: url('img/background.png') repeat-y 50% 0;
+    background-size: cover;
+}
+
+table#dex_table ,#dex_table-sticky{
     border-collapse: collapse;
 }
 
-table#dex_table tr{
+table#dex_table tr, #dex_table-sticky tr{
     border-bottom: 1px solid silver;
+    border-left: 1px solid #7f7f7f;
+    border-right: 1px solid #7f7f7f;
+    background: #fcfcfc;
 }
 
-table#dex_table tr td, table#dex_table tr th{
+table#dex_table tr td, table#dex_table tr th, table#dex_table-sticky tr th, table#dex_table-sticky tr td{
     padding: 1em 2em;
+
+}
+
+input.tablesorter-filter{
+    width: 100%;
 }
 
 table#dex_table tr td:nth-child(1){
@@ -17,6 +44,7 @@ table#dex_table tr td:nth-child(1){
 
 table#dex_table tr td:nth-child(2){
     width: 20%;
+    text-align: center;
 }
 
 table#dex_table tr td:nth-child(3){
@@ -30,22 +58,41 @@ textarea#exportarea{
     display: none;
 }
 
-tr.got-it{
-    background-color: #dff0d8;
+table#dex_table tr.got-it{
+    background: #dff0d8;
 }
 
 #options_container{
     display: none;
 }
 
-div#table_wrapper{
+#table_wrapper{
     width: 80%;
     margin: 0 auto;
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.25);
+    -moz-box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.25);
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.25);
+    /*padding: 0 10%;*/
+}
+
+#dex_table thead, #dex_table-sticky thead{
+    background: #fcfcfc;
 }
 
 header{
     width: 100%;
-    padding: 0 10%;
+    padding: 1em 10% 0 10%;
+    background: #fcfcfc;
+    border-bottom: 1px solid rgba(0,0,0,0.25) ;
+}
+
+#logo img{
+    height: 125px;
+}
+
+#logo{
+    float: left;
+    margin-right: 2em;
 }
 
 /*table#dex_table thead{*/
