@@ -5,12 +5,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<link href="pokedex.css" type="text/css" rel="stylesheet" />
-	<link href="lib/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="lib/bootstrap/bootstrap.min.css" type="text/css" rel="stylesheet" />
+	<link href="lib/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
 	<script type="text/javascript" src="lib/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="lib/mustache.min.js"></script>
-	<script type="text/javascript" src="lib/jquery.tablesorter.js"></script>
-	<script type="text/javascript" src="lib/jquery.tablesorter.widgets.js"></script>
-	<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/tablesorter/jquery.tablesorter.js"></script>
+	<script type="text/javascript" src="lib/tablesorter/jquery.tablesorter.widgets.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="pokedex.js"></script>
 </head>
 <body>
@@ -46,9 +47,11 @@
         <table id="dex_table">
             <thead>
                 <tr>
-                    <th data-placeholder="Filter by #">#</th>
-                    <th data-placeholder="Filter by name">Name</th>
-                    <th data-placeholder="Filter by Location" class="sorter-false">Location</th>
+                    <th class="id" data-placeholder="Filter by #">#</th>
+                    <th class="pic sorter-false">Pic</th>
+                    <th class="name" data-placeholder="Filter by name">Name</th>
+                    <th class="location sorter-false" data-placeholder="Filter by Location">Location</th>
+                    <th class="collected" data-placeholder="Got it">Got it?</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,7 +64,21 @@
 
 <script id="pokedex_row_template" type="text/html">
 	{{#pokemon}}
-		<tr><td class="id">{{id}}</td><td>{{name}}</td><td>{{location}}</td></tr>
+		<tr data-id="{{id}}">
+            <td class="id">{{id}}</td>
+            <td class="pic"><img src="img/pkmn/{{intID}}.png"></td>
+            <td class="name">{{name}}</td>
+            <td class="location">
+                <a class="loc-gen gen-1" data-gen="gen-1" href="#"></a>
+                <a class="loc-gen gen-2" data-gen="gen-2" href="#"></a>
+                <a class="loc-gen gen-3" data-gen="gen-3" href="#"></a>
+                <a class="loc-gen gen-4" data-gen="gen-4" href="#"></a>
+                <a class="loc-gen gen-5" data-gen="gen-5" href="#"></a>
+                <a class="loc-gen gen-6" data-gen="gen-6" href="#"></a>
+                <div class="location"></div>
+            </td>
+            <td class="collected"><input type="checkbox" name="checkbox_{{id}}" id="checkbox_{{id}}" class="check" /> <label for="checkbox_{{id}}">&nbsp;</label></td>
+        </tr>
 	{{/pokemon}}
 </script>
 

@@ -1,15 +1,18 @@
 var _pokemon = {};
 
 var rowClick = function(){
-    if($(this).hasClass('got-it')){
-        $(this).removeClass('got-it');
-        removeFromLocalStorage($(this).find('.id').html());
+
+    var $row = $(this).closest('tr');
+
+    if($row.hasClass('got-it')){
+        $row.removeClass('got-it');
+        removeFromLocalStorage($row.find('.id').html());
     } else {
-        $(this).addClass('got-it');
-        saveToLocalStorage($(this).find('.id').html());
+        $row.addClass('got-it');
+        saveToLocalStorage($row.find('.id').html());
     }
-    if(shouldFilterHide($(this).hasClass('got-it'))){
-        $(this).fadeOut(400);
+    if(shouldFilterHide($row.hasClass('got-it'))){
+        $row.fadeOut(400);
     }
     loadStatus();
 };
@@ -98,7 +101,9 @@ var setupCollected = function(){
         pokedex = JSON.parse(localStorage.pokedex);
     }
     $.each(pokedex, function(idx){
-        $('td.id:contains('+idx+')').parents('tr').addClass('got-it');
+        var $row = $('td.id:contains('+idx+')').parents('tr');
+        $row.addClass('got-it');
+        $row.find('td#collected input').attr('checked', 'checked');
     });
 };
 
@@ -146,12 +151,19 @@ var loadStatus = function(){
     $('#status').html(Mustache.render(tpl, {total: total, caught: caught, missing: diff}));
 };
 
+var parsePokemon = function(pkmn){
+    $.each(pkmn, function(idx, val){
+        val['intID'] = idx+1;
+    });
+    return pkmn;
+};
+
 var loadPokemon = function(callback){
     $.ajax({
         url: "pokedex.json",
         dataType: 'json',
         success: function(pokemon){
-            _pokemon = pokemon;
+            _pokemon = parsePokemon(pokemon);
             var tpl = $('#pokedex_row_template').html();
             var html = Mustache.render(tpl, {pokemon: _pokemon});
             $('#dex_table').find('tbody').append(html);
@@ -163,19 +175,32 @@ var loadPokemon = function(callback){
     });
 };
 
+var getLocation = function(e){
+    console.log($(this));
+    var id = $(this).closest('tr').data('id');
+    var idxId = parseInt(id)-1;
+    var gen = $(this).data('gen');
+    if(_pokemon[idxId]["location"][gen] != ''){
+        $(this).siblings('.location').html(_pokemon[idxId]["location"][gen]);
+    } else {
+        $(this).siblings('.location').html('Locations for this gen either don\'t exist, or is not implemented in our system');
+    }
+    e.preventDefault();
+};
+
 var initialize = function(){
     loadPokemon(function(){
         setupCollected();
         loadStatus();
         var $dexTable = $('table#dex_table');
         $dexTable.tablesorter(sorterConfig);
-        $dexTable.find('tbody tr').click(rowClick);
         $('button#export_json').click(exportJSON);
         $('button#import_json').click(importJSON);
         $('select#filter').val('default');
         $('#options').click(function(){$('#options_container').slideToggle(200)});
         $('select#filter').change(applyFilter);
-
+        $(document).on("click", '.loc-gen', getLocation);
+        $(document).on("change", '.check', rowClick);
     });
 };
 
