@@ -103,7 +103,7 @@ var setupCollected = function(){
     $.each(pokedex, function(idx){
         var $row = $('td.id:contains('+idx+')').parents('tr');
         $row.addClass('got-it');
-        $row.find('td#collected input').attr('checked', 'checked');
+        $row.find('td.collected input').attr('checked', 'checked');
     });
 };
 
@@ -198,7 +198,7 @@ var initialize = function(){
         $('button#import_json').click(importJSON);
         $('select#filter').val('default');
         $('#options').click(function(){$('#options_container').slideToggle(200)});
-        $('select#filter').change(applyFilter);
+        $('select#filter').on('change', applyFilter);
         $(document).on("click", '.loc-gen', getLocation);
         $(document).on("change", '.check', rowClick);
     });
