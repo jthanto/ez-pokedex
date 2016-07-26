@@ -150,18 +150,24 @@ input[type="checkbox"] {
 /* Checkbox Icons */
 label {
     position: relative;
-    padding-left: 30px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #333333;
-    padding: 16px 28px 0 0;
+    /*padding-left: 30px;*/
+    /*font-size: 30px;*/
+    /*cursor: pointer;*/
+    /*color: #333333;*/
+    /*padding: 16px 28px 0 0;*/
+    /*background-color: red;*/
+
+
 }
 
 label:before, label:after {
+
     font-family: FontAwesome;
     font-size: 50px;
     /*absolutely positioned*/
-    position: absolute; top: 0; left: -49px; right: 10px;
+    position: absolute;
+    top: -15px;
+    left: 1px;
 }
 
 label:before {
@@ -173,8 +179,8 @@ label:after {
     /*overflow: hidden;*/
     opacity: 0;
     font-size: 27px;
-    top: 15px;
-    left: -43px;
+    top: 0;
+    left: 7px;
     color: #333333;
 
     -webkit-transition: all 0.50s;
@@ -229,15 +235,8 @@ a.gen-6{
     background-color: #e6bf99;
 }
 
-/*.check{*/
-    /*width: 32px;*/
-    /*height: 32px;*/
-    /*border: 1px solid silver;*/
-/*}*/
-
-/*tr.got-it td div.check{*/
-
-/*}*/
-/*table#dex_table thead{*/
-    /*position:fixed;*/
-/*}*/
+@media screen and (max-width: 1070px) {
+    #table_wrapper{
+        width: 100%;
+    }
+}
