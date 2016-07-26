@@ -218,6 +218,17 @@ a.gen-6{
     background-image: url(img/icons/gen6.png);
 }
 
+.tablesorter .filtered {
+    display: none;
+}
+
+/* ajax error row */
+.tablesorter .tablesorter-errorRow td {
+    text-align: center;
+    cursor: pointer;
+    background-color: #e6bf99;
+}
+
 /*.check{*/
     /*width: 32px;*/
     /*height: 32px;*/

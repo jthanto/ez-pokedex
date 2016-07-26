@@ -64,7 +64,7 @@ var sorterConfig = {
         filter_defaultAttrib : 'data-value',
         filter_selectSourceSeparator : '|'
     }
-}
+};
 
 var shouldFilterHide = function(gotIt){
     switch($('select#filter option:selected').val()){
